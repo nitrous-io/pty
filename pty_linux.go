@@ -44,3 +44,7 @@ func unlockpt(f *os.File) error {
 	// use TIOCSPTLCK with a zero valued arg to clear the slave pty lock
 	return ioctl(f.Fd(), syscall.TIOCSPTLCK, uintptr(unsafe.Pointer(&u)))
 }
+
+func setsize(f *os.File, rows uint16, cols uint16) error {
+	return ErrUnsupported
+}
