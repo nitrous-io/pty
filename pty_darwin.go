@@ -59,14 +59,6 @@ func unlockpt(f *os.File) error {
 	return ioctl(f.Fd(), syscall.TIOCPTYUNLK, 0)
 }
 
-func ioctl(fd, cmd, ptr uintptr) error {
-	_, _, e := syscall.Syscall(syscall.SYS_IOCTL, fd, cmd, ptr)
-	if e != 0 {
-		return syscall.ENOTTY
-	}
-	return nil
-}
-
 func setsize(f *os.File, rows uint16, cols uint16) error {
 	var ws winsize
 	ws.ws_row = rows
